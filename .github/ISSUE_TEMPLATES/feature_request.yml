@@ -1,0 +1,67 @@
+name: Feature Request
+description: Propose a new feature
+labels: ["type: feat", "priority: med"]
+assignees: ["hinode-codes"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Feature Request"
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: One sentence — what should this do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      placeholder: Why is this needed? What problem does it solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      placeholder: |
+        - [ ] Task 1
+        - [ ] Task 2
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: How do we know this is done?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - "scope: download"
+        - "scope: compress"
+        - "scope: playback"
+        - "scope: vault"
+        - "scope: db"
+        - "scope: ui"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "priority: high"
+        - "priority: med"
+        - "priority: low"
+    validations:
+      required: true

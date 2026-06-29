@@ -1,4 +1,4 @@
-package com.milya.milya_music.ui.slideshow
+package com.milya.milyamusic.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.milya.milya_music.databinding.FragmentSlideshowBinding
+import com.milya.milyamusic.databinding.FragmentSettingsBinding
 
-class SlideshowFragment : Fragment() {
-
-    private var _binding: FragmentSlideshowBinding? = null
+class SettingsFragment : Fragment() {
+    private var _binding: FragmentSettingsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -20,16 +19,16 @@ class SlideshowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        val settingsViewModel =
+            ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textSettings
+        settingsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

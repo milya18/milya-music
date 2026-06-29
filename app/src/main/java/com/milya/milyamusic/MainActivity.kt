@@ -1,21 +1,20 @@
-package com.milya.milya_music
+package com.milya.milyamusic
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.appcompat.app.AppCompatActivity
-import com.milya.milya_music.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import com.milya.milyamusic.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -36,22 +35,24 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.navView?.let {
-            appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow, R.id.nav_settings
-                ),
-                binding.drawerLayout
-            )
+            appBarConfiguration =
+                AppBarConfiguration(
+                    setOf(
+                        R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow, R.id.nav_settings,
+                    ),
+                    binding.drawerLayout,
+                )
             setupActionBarWithNavController(navController, appBarConfiguration)
             it.setupWithNavController(navController)
         }
 
         binding.appBarMain.contentMain.bottomNavView?.let {
-            appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow
+            appBarConfiguration =
+                AppBarConfiguration(
+                    setOf(
+                        R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow,
+                    ),
                 )
-            )
             setupActionBarWithNavController(navController, appBarConfiguration)
             it.setupWithNavController(navController)
         }

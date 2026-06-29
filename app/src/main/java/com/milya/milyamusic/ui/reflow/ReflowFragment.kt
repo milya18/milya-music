@@ -1,4 +1,4 @@
-package com.milya.milya_music.ui.reflow
+package com.milya.milyamusic.ui.reflow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.milya.milya_music.databinding.FragmentReflowBinding
+import com.milya.milyamusic.databinding.FragmentReflowBinding
 
 class ReflowFragment : Fragment() {
-
     private var _binding: FragmentReflowBinding? = null
 
     // This property is only valid between onCreateView and
@@ -20,7 +19,7 @@ class ReflowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val reflowViewModel =
             ViewModelProvider(this).get(ReflowViewModel::class.java)

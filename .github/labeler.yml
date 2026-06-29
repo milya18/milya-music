@@ -1,0 +1,30 @@
+"scope: download":
+  - app/src/**/download/**
+
+"scope: compress":
+  - app/src/**/compress/**
+
+"scope: vault":
+  - app/src/**/vault/**
+
+"scope: playback":
+  - app/src/**/playback/**
+
+"scope: ui":
+  - app/src/**/ui/**
+
+"scope: db":
+  - app/src/**/db/**
+
+"type: ci":
+  - .github/**
+  - "*.gradle.kts"
+  - gradle/**
+
+"type: test":
+  - app/src/test/**
+  - app/src/androidTest/**
+
+"type: docs":
+  - "*.md"
+  - docs/**
