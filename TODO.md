@@ -10,15 +10,15 @@ Living list of known gaps, limitations, and deferred work. Items are linked to G
 
 These must be resolved before `v0.1.0-alpha` is tagged.
 
-| # | Item | Issue |
-|---|---|---|
-| 1 | yt-dlp integration (Chaquopy vs remote proxy decision pending) | [#7](https://github.com/milya18/YOUR_REPO_NAME/issues/7) |
-| 2 | ffmpeg-kit Opus compression pipeline | [#9](https://github.com/milya18/YOUR_REPO_NAME/issues/9) |
-| 3 | Room DB Track entity and DAO | [#10](https://github.com/milya18/YOUR_REPO_NAME/issues/10) |
-| 4 | VaultDataSource for ExoPlayer | [#14](https://github.com/milya18/YOUR_REPO_NAME/issues/14) |
-| 5 | MediaSessionService background playback | [#13](https://github.com/milya18/YOUR_REPO_NAME/issues/13) |
-| 6 | Unit test coverage ≥ 80% on core modules | [#17](https://github.com/milya18/YOUR_REPO_NAME/issues/17) |
-| 7 | End-to-end integration test (URL → playback) | [#18](https://github.com/milya18/YOUR_REPO_NAME/issues/18) |
+| # | Item                                                           | Issue                                                      |
+|---|----------------------------------------------------------------|------------------------------------------------------------|
+| 1 | yt-dlp integration (Chaquopy vs remote proxy decision pending) | [#7](https://github.com/milya18/YOUR_REPO_NAME/issues/7)   |
+| 2 | ffmpeg-kit Opus compression pipeline                           | [#9](https://github.com/milya18/YOUR_REPO_NAME/issues/9)   |
+| 3 | Room DB Track entity and DAO                                   | [#10](https://github.com/milya18/YOUR_REPO_NAME/issues/10) |
+| 4 | VaultDataSource for ExoPlayer                                  | [#14](https://github.com/milya18/YOUR_REPO_NAME/issues/14) |
+| 5 | MediaSessionService background playback                        | [#13](https://github.com/milya18/YOUR_REPO_NAME/issues/13) |
+| 6 | Unit test coverage ≥ 80% on core modules                       | [#17](https://github.com/milya18/YOUR_REPO_NAME/issues/17) |
+| 7 | End-to-end integration test (URL → playback)                   | [#18](https://github.com/milya18/YOUR_REPO_NAME/issues/18) |
 
 ---
 

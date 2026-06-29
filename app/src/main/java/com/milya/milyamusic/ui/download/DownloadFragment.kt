@@ -1,60 +1,75 @@
 package com.milya.milyamusic.ui.download
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.work.WorkInfo
 import com.milya.milyamusic.R
+import com.milya.milyamusic.databinding.FragmentDownloadBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DownloadFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DownloadFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentDownloadBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_download, container, false)
+    ): View {
+        val downloadViewModel = ViewModelProvider(this)[DownloadViewModel::class.java]
+
+        _binding = FragmentDownloadBinding.inflate(inflater, container, false)
+
+        binding.downloadButton.setOnClickListener {
+            val url = binding.downloadUrlInput.text.toString().trim()
+            if (url.isNotEmpty()) {
+                downloadViewModel.startDownload(url)
+            } else {
+                Toast.makeText(context, getString(R.string.error_empty_url), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Observe progress data updates emitted while the worker is actively processing
+        downloadViewModel.downloadWorkInfo.observe(viewLifecycleOwner) { workInfo ->
+            if (workInfo != null) {
+                binding.textDownloadStatus.text = when (workInfo.state) {
+                    WorkInfo.State.ENQUEUED -> getString(R.string.status_queued)
+
+                    WorkInfo.State.RUNNING -> {
+                        val stage = workInfo.progress.getString("STAGE")
+                        val progress = workInfo.progress.getInt("PROGRESS", 0)
+
+                        // Render UI updates mapping cleanly to current task operations
+                        when (stage) {
+                            "FETCHING" -> "Fetching audio metadata..."
+                            "DOWNLOADING" -> "Downloading: $progress%"
+                            "CONVERTING" -> "Converting audio format: $progress%"
+                            else -> getString(R.string.status_running)
+                        }
+                    }
+
+                    WorkInfo.State.SUCCEEDED -> {
+                        binding.downloadUrlInput.text.clear()
+                        getString(R.string.status_success)
+                    }
+                    WorkInfo.State.FAILED -> getString(R.string.status_failed)
+                    else -> getString(R.string.status_idle)
+                }
+            } else {
+                binding.textDownloadStatus.text = getString(R.string.status_idle)
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DownloadFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DownloadFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

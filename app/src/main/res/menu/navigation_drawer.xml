@@ -20,5 +20,13 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_download"
+            android:icon="@drawable/ic_download_black_24dp"
+            android:title="@string/download_audio" />
+        <item
+            android:id="@+id/nav_playback"
+            android:icon="@drawable/ic_play_black_24dp"
+            android:title="@string/play_audio" />
     </group>
 </menu>

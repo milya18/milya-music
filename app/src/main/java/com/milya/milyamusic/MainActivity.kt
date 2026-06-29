@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.milya.milyamusic.databinding.ActivityMainBinding
@@ -17,9 +20,15 @@ import com.milya.milyamusic.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (!Python.isStarted()) {
+            Python.start(AndroidPlatform(this))
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appBarMain.toolbar)
@@ -51,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 AppBarConfiguration(
                     setOf(
                         R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow,
+                        R.id.nav_download, R.id.nav_playback
                     ),
                 )
             setupActionBarWithNavController(navController, appBarConfiguration)
